@@ -1,0 +1,39 @@
+# UPSGlam · orquestación de servicios propios
+# Supabase (Auth, PostgreSQL, Storage) es externo. La app móvil no corre en Docker.
+name: upsglam
+
+services:
+  gpu-service:
+    build: ./gpu-service
+    image: upsglam/gpu-service:1.0
+    container_name: upsglam-gpu
+    restart: unless-stopped
+    environment:
+      GPU_QUEUE_CAPACITY: ${GPU_QUEUE_CAPACITY:-16}
+      GPU_MAX_IMAGE_MB: ${GPU_MAX_IMAGE_MB:-10}
+      GPU_MAX_SIDE_PX: ${GPU_MAX_SIDE_PX:-4096}
+      GPU_SYNC_TIMEOUT_S: ${GPU_SYNC_TIMEOUT_S:-60}
+      CUDA_DEVICE: ${CUDA_DEVICE:-0}
+      GPU_LOG_FILE: /app/logs/gpu-service.log
+    volumes:
+      - ./gpu-service/logs:/app/logs          # logs JSON por request_id (evidencia)
+    # Puerto publicado solo para pruebas directas; el backend usa http://gpu-service:8000
+    ports:
+      - "${GPU_SERVICE_PORT:-8000}:8000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    networks: [upsglam-net]
+
+  # backend:   (Etapa 4) Spring WebFlux; GPU_SERVICE_URL=http://gpu-service:8000
+  #   depends_on:
+  #     gpu-service:
+  #       condition: service_healthy
+
+networks:
+  upsglam-net:
+    driver: bridge

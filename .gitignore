@@ -26,3 +26,6 @@ Thumbs.db
 load-tests/results/raw/
 BITACORA.md
 PLAN_DESARROLLO.md
+PENDIENTES.md
+# Logs de ejecución
+gpu-service/logs/*.log

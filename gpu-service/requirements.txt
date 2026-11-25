@@ -1,4 +1,11 @@
-numpy>=2.0
-pillow>=10.1
-pycuda>=2024.1
-pytest>=8.0
+# Núcleo GPU (versiones exactas para reproducibilidad)
+numpy==2.5.1
+pillow==13.0.0
+pycuda==2026.1
+# Servicio REST
+fastapi==0.165.0
+uvicorn[standard]==0.54.0
+python-multipart==0.0.34
+# Pruebas
+pytest==9.2.0
+httpx==0.28.1
