@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "dart-code.flutter",
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "nvidia.nsight-vscode-edition",
+    "vscjava.vscode-java-pack",
+    "vmware.vscode-boot-dev-pack",
+    "ms-azuretools.vscode-docker",
+    "rangav.vscode-thunder-client",
+    "yzane.markdown-pdf"
+  ]
+}

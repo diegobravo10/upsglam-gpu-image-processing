@@ -1,0 +1,28 @@
+# Secretos
+.env
+*.env.local
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+# Java
+backend/target/
+backend/build/
+.gradle/
+# Flutter
+mobile/build/
+mobile/.dart_tool/
+mobile/.flutter-plugins*
+# IDE / SO
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+# Resultados pesados de carga (se versionan los resúmenes)
+load-tests/results/raw/
+BITACORA.md
+PLAN_DESARROLLO.md
